@@ -11,7 +11,7 @@ Main assumption is that records are used to represent DB data.
 2.  [Basic usage](#usage)
 3.  [Records](#records)
 4.  [Selectors](#selectors)
-5.  [Entities](#entities)
+5.  [Specs](doc/specs.md)
 
 
 # Thesis
@@ -183,10 +183,3 @@ mekao:select(
 ```
 
 see `mekao:selector()` type spec.
-
-
-# Entities
-Basically when you changing some data you may pass regular value or '$skip' atom
-to exclude field from result.
-
-see `mekao:entity()` type spec.
