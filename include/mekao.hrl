@@ -72,3 +72,4 @@
 
     is_null = fun mekao_utils:is_null/1 :: fun((Value :: term()) -> boolean())
 }).
+
