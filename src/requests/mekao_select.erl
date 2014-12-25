@@ -12,7 +12,7 @@
 -include("mekao.hrl").
 
 %% API
--export([select_pk/3, select/3, select/4, prepare_select/3, prepare_select/4]).
+-export([select_pk/3, select/3, select/4, prepare_select/3, prepare_select/4, select/5]).
 
 
 select_pk(E, Table, S) ->
@@ -30,12 +30,18 @@ select(E, Table, S) ->
   select(E, [], Table, S).
 
 select(E, Opts, Table, S) ->
+  select(E, Opts, Table, S, []).
+
+select(E, Opts, Table, S, Projector) ->
   {ok, mekao_core:build(prepare_select(E, Opts, Table, S))}.
 
 prepare_select(E, Table, S) ->
   prepare_select(E, [], Table, S).
 
 prepare_select(E, Opts, Table, S) ->
+  prepare_select(E, Opts, Table, S, []).
+
+prepare_select(E, Opts, Table, S, Projector) ->
   #mekao_table{
     columns = MekaoCols,
     order_by = OrderBy

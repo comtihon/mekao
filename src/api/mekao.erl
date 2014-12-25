@@ -18,7 +18,7 @@
   prepare_update/4,
   prepare_delete/3,
   build/1
-]).
+  , select/5]).
 
 -include("mekao.hrl").
 
@@ -67,6 +67,9 @@ select(A, B, C) -> mekao_select:select(A, B, C).
 
 -spec select(selector(), [select_opt()], table(), s()) -> {ok, b_query()}.
 select(A, B, C, D) -> mekao_select:select(A, B, C, D).
+
+-spec select(selector(), [select_opt()], table(), s(), Projector :: list()) -> {ok, b_query()}.
+select(A, B, C, D, E) -> mekao_select:select(A, B, C, D, E).
 
 -spec exists_pk(selector(), table(), s()) -> {ok, b_query()}
 | {error, pk_miss}.
