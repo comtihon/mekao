@@ -4,5 +4,6 @@
 ebin/
 deps/
 .eunit/
+out/
 .idea/
 mekao.iml

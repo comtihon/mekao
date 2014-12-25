@@ -43,9 +43,11 @@ prepare_select(E, Opts, Table, S) ->
 
 prepare_select(E, Opts, Table, S, Projector) ->
   #mekao_table{
-    columns = MekaoCols,
+    columns = Cols,
     order_by = OrderBy
   } = Table,
+
+  MekaoCols = filter_columns(Cols, Projector),
 
   {NextNum, QData} = mekao_core:qdata(1, mekao_utils:e2l(E), MekaoCols, S),
   {Where, {Types, Vals}} = mekao_core:where(QData, S),
@@ -69,6 +71,16 @@ prepare_select(E, Opts, Table, S, Projector) ->
     }, Opts, S
   ).
 
+%% @private
+filter_columns(MekaoCols, []) -> MekaoCols;
+filter_columns(MekaoCols, Projector) ->
+  lists:foldl(
+    fun(#mekao_column{name = Name} = Col, Acc) ->
+      case lists:member(Name, Projector) of
+        true -> [Col | Acc];
+        false -> Acc
+      end
+    end, [], MekaoCols).
 
 %% @private
 limit(PSelect, Opts, #mekao_settings{limit = undefined}) ->
