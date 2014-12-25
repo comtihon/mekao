@@ -33,7 +33,7 @@ select(E, Opts, Table, S) ->
   select(E, Opts, Table, S, []).
 
 select(E, Opts, Table, S, Projector) ->
-  {ok, mekao_core:build(prepare_select(E, Opts, Table, S))}.
+  {ok, mekao_core:build(prepare_select(E, Opts, Table, S, Projector))}.
 
 prepare_select(E, Table, S) ->
   prepare_select(E, [], Table, S).
