@@ -73,3 +73,34 @@
     is_null = fun mekao_utils:is_null/1 :: fun((Value :: term()) -> boolean())
 }).
 
+-type iotriple() :: iodata() | {iodata(), iodata(), iodata()}.
+
+-type table() :: #mekao_table{}.
+-type column() :: #mekao_column{}.
+-type s() :: #mekao_settings{}.
+
+-type entity() :: tuple() | list(term() | '$skip').
+-type selector() :: tuple() | list(predicate()).
+
+-type predicate() :: term()
+| {'$predicate', between, term(), term()}
+| {'$predicate', in, [term(), ...]}
+| {'$predicate', '=' | '<>' | '>' | '>=' | '<' | '<=' | like, term()}
+| {'$predicate', 'not', predicate()}.
+
+-type select_opt() :: {limit, {RowCount :: non_neg_integer(), Offset :: non_neg_integer()}}.
+
+%% generic query
+-type 'query'(Body) :: #mekao_query{body :: Body}.
+
+%% prepared query
+-type p_query() :: 'query'(#mekao_insert{} | #mekao_select{} | #mekao_update{} | #mekao_delete{}).
+%% built query
+-type b_query() :: 'query'(iolist()).
+
+-export_type([
+  iotriple/0,
+  table/0, column/0, s/0,
+  'query'/1, p_query/0, b_query/0,
+  predicate/0
+]).

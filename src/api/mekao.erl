@@ -2,7 +2,7 @@
 
 %% API
 -export([
-  select_pk/3, select/3, select/4,
+  select_pk/3, select/3, select/4, select/5,
   exists_pk/3, exists/3,
   count/3,
   insert/3, insert_all/3,
@@ -17,41 +17,9 @@
   prepare_insert/3, prepare_insert_all/3,
   prepare_update/4,
   prepare_delete/3,
-  build/1
-  , select/5]).
+  build/1]).
 
 -include("mekao.hrl").
-
--type iotriple() :: iodata() | {iodata(), iodata(), iodata()}.
-
--type table() :: #mekao_table{}.
--type column() :: #mekao_column{}.
--type s() :: #mekao_settings{}.
-
--type entity() :: tuple() | list(term() | '$skip').
-
--type predicate() :: term()
-| {'$predicate', between, term(), term()}
-| {'$predicate', in, [term(), ...]}
-| {'$predicate', '=' | '<>' | '>' | '>=' | '<' | '<=' | like, term()}
-| {'$predicate', 'not', predicate()}.
-
--type select_opt() :: {limit, {RowCount :: non_neg_integer(), Offset :: non_neg_integer()}}.
-
-%% generic query
--type 'query'(Body) :: #mekao_query{body :: Body}.
-
-%% prepared query
--type p_query() :: 'query'(#mekao_insert{} | #mekao_select{} | #mekao_update{} | #mekao_delete{}).
-%% built query
--type b_query() :: 'query'(iolist()).
-
--export_type([
-  iotriple/0,
-  table/0, column/0, s/0,
-  'query'/1, p_query/0, b_query/0,
-  predicate/0
-]).
 
 %% ===================================================================
 %% API functions
